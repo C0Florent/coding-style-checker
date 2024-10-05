@@ -57,13 +57,14 @@
                 --error                       \
                 2>&1                          \
                 | sed "s|$project_dir/||"     \
-                | tee /dev/stdout | wc -l
+                | tee coding-style-reports.log | wc -l
               )
               
               echo "Found $count issues"
               end_time=$(date +%s)
               echo "Ran in $((end_time - start_time))s"
               if [ $count -gt 0 ]; then
+                  echo "Wrote coding style report to coding-style-reports.log"
                   exit 1
               fi
               exit 0
